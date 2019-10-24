@@ -1,0 +1,1 @@
+girtod --use-runtime-linker

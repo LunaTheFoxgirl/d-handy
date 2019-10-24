@@ -1,0 +1,51 @@
+############################################
+###### Definitions for wrapping Handy ######
+############################################
+
+# must start with wrap
+wrap: handy
+file: Handy-0.0.gir
+
+#
+# Types with minor patches
+#
+
+struct: ActionRow
+class: ActionRow
+noCode: activate
+code: start
+    alias activate = Widget.activate;
+
+	/** */
+	public void activate()
+	{
+		hdy_action_row_activate(hdyActionRow);
+	}
+code: end
+
+struct: Arrows
+class: Arrows
+noCode: get_direction
+code: start
+    alias getDirection = Widget.getDirection;
+
+	/**
+	 * Get the direction the arrows point to
+	 *
+	 * Returns: the arrows direction
+	 */
+	public HdyArrowsDirection getDirection()
+	{
+		return hdy_arrows_get_direction(hdyArrows);
+	}
+code: end
+
+#
+# Major off-gen patches
+#
+struct: Dialog
+noCode: true
+
+# NOTE: Due to a bug (https://github.com/gtkd-developers/GtkD/issues/283) in GtkD, currently the dialer is not supported.
+struct: Dialer
+noCode: true
